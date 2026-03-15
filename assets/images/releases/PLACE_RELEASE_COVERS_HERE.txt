@@ -1,0 +1,12 @@
+Place release cover art here.
+
+Naming convention:
+  {release-id}.jpg   e.g. shade-money.jpg
+
+When cover art is ready:
+  1. Drop the file here.
+  2. Open data/content.json.
+  3. Set "coverPlaceholder": false for that release.
+  4. Confirm "cover" path matches: "assets/images/releases/shade-money.jpg"
+
+Recommended size: 3000x3000px (1:1 ratio), JPEG, under 500KB.

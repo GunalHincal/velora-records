@@ -1,0 +1,12 @@
+Place artist photos here.
+
+Naming convention:
+  {artist-id}.jpg   e.g. malik-ray.jpg
+
+When a photo is ready:
+  1. Drop the file here.
+  2. Open data/content.json.
+  3. Set "photoPlaceholder": false for that artist.
+  4. Confirm "photo" path matches: "assets/images/artists/malik-ray.jpg"
+
+Recommended size: 800x1067px (3:4 ratio), JPEG, under 300KB.

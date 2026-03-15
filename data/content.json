@@ -1,0 +1,36 @@
+{
+  "label": {
+    "name": "Velora Records",
+    "tagline": "Independent. Intentional. Uncompromising.",
+    "description": "Velora Records is an independent music label committed to developing authentic voices and distinctive sounds. We work with artists who define their own lane.",
+    "contact": "hincalgunal@gmail.com",
+    "founded": "2026"
+  },
+  "artists": [
+    {
+      "id": "malik-ray",
+      "name": "MALIK RAY",
+      "genre": "Hip-Hop / R&B",
+      "bio": "MALIK RAY is a boundary-pushing artist signed to Velora Records, known for his sharp lyricism and distinct sonic identity.",
+      "photo": "assets/images/artists/malik-ray.jpg",
+      "photoPlaceholder": false,
+      "artistSpotifyUrl": "https://open.spotify.com/intl-tr/artist/6HkVZPxiFNI2qPnWR0LgMK"
+    }
+  ],
+  "releases": [
+    {
+      "id": "shade-money",
+      "title": "Shade Money",
+      "artist": "MALIK RAY",
+      "artistId": "malik-ray",
+      "type": "Single",
+      "year": "2026",
+      "upc": "8680948182925",
+      "isrc": "TRAKF1636353",
+      "cover": "assets/images/releases/shade-money.jpg",
+      "coverPlaceholder": false,
+      "albumSpotifyUrl": "https://open.spotify.com/intl-tr/album/4PlfkcNOx2YMEwMwMYvRNg",
+      "trackSpotifyUrl": "https://open.spotify.com/intl-tr/track/1dENyQWjIvS4estqHSkgc1"
+    }
+  ]
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Velora Records — Independent music label. Artists, releases, and label identity." />
+  <meta name="robots" content="index, follow" />
+  <title>Velora Records</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="assets/images/brand/favicon.png" />
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav" id="nav">
+    <a href="#home" class="nav__logo" aria-label="Velora Records Home">
+      <img src="assets/images/brand/logo.png" alt="Velora Records" class="nav__logo-img" />
+    </a>
+    <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#artists">Artists</a></li>
+      <li><a href="#releases">Releases</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="home">
+    <div class="hero__bg"></div>
+    <div class="hero__content">
+      <p class="hero__eyebrow">Independent Record Label</p>
+      <h1 class="hero__title">
+        <span class="hero__title-v">V</span>ELORA<br />RECORDS
+      </h1>
+      <p class="hero__sub">Independent. Intentional. Uncompromising.</p>
+      <div class="hero__cta">
+        <a href="#artists" class="btn btn--primary">Our Artists</a>
+        <a href="#releases" class="btn btn--ghost">Releases</a>
+      </div>
+    </div>
+    <div class="hero__scroll" aria-hidden="true">
+      <span class="hero__scroll-line"></span>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__label">About the Label</p>
+        <h2 class="section__title">Built for the<br />Uncompromising Artist</h2>
+      </div>
+      <div class="about__grid">
+        <div class="about__text">
+          <p class="about__lead">
+            Velora Records is an independent music label focused on developing
+            distinctive artist projects and high-quality contemporary sound.
+          </p>
+          <p>
+            Our work blends modern creative technology with strong artistic
+            direction to create music that feels natural, polished, and
+            emotionally resonant. At Velora, the music always comes first.
+          </p>
+          <p>
+            Founded with a long-term vision, Velora Records develops and releases
+            music designed to feel current, memorable, and built to last.
+          </p>
+        </div>
+        <div class="about__stats">
+          <div class="stat">
+            <span class="stat__num" id="statArtists">1</span>
+            <span class="stat__label">Artist</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num" id="statReleases">1</span>
+            <span class="stat__label">Release</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num">2026</span>
+            <span class="stat__label">Founded</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ARTISTS ── -->
+  <section class="section artists" id="artists">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__label">Roster</p>
+        <h2 class="section__title">Our Artists</h2>
+      </div>
+      <div class="artists__grid" id="artistsGrid">
+        <!-- Populated by script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RELEASES ── -->
+  <section class="section releases" id="releases">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__label">Discography</p>
+        <h2 class="section__title">Releases</h2>
+      </div>
+      <div class="releases__grid" id="releasesGrid">
+        <!-- Populated by script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VERIFICATION ── -->
+  <section class="section verification" id="verification">
+    <div class="container">
+      <div class="verification__box">
+        <p class="section__label">Label Verification</p>
+        <h2 class="verification__title">Label Information</h2>
+        <p class="verification__desc">
+          This page serves as the official public presence of Velora Records.
+          The following information is provided for platform verification purposes,
+          including Spotify for Artists.
+        </p>
+        <div class="verification__table">
+          <div class="vrow">
+            <span class="vrow__key">Label Name</span>
+            <span class="vrow__val">Velora Records</span>
+          </div>
+          <div class="vrow">
+            <span class="vrow__key">Contact Email</span>
+            <span class="vrow__val">
+              <a href="mailto:hincalgunal@gmail.com">hincalgunal@gmail.com</a>
+            </span>
+          </div>
+          <div class="vrow">
+            <span class="vrow__key">Artist on Roster</span>
+            <span class="vrow__val">MALIK RAY</span>
+          </div>
+          <div class="vrow">
+            <span class="vrow__key">Release Title</span>
+            <span class="vrow__val">Shade Money</span>
+          </div>
+          <div class="vrow">
+            <span class="vrow__key">UPC</span>
+            <span class="vrow__val mono">8680948182925</span>
+          </div>
+          <div class="vrow">
+            <span class="vrow__key">ISRC</span>
+            <span class="vrow__val mono">TRAKF1636353</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="contact__inner">
+        <div class="section__header section__header--left">
+          <p class="section__label">Get in Touch</p>
+          <h2 class="section__title">Contact</h2>
+        </div>
+        <div class="contact__body">
+          <p class="contact__text">
+            For artist inquiries, licensing, sync, distribution, or general
+            correspondence, reach out directly.
+          </p>
+          <a href="mailto:hincalgunal@gmail.com" class="contact__email">
+            hincalgunal@gmail.com
+          </a>
+          <p class="contact__note">
+            We read every message. Response times may vary.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <img src="assets/images/brand/logo.png" alt="Velora Records" class="footer__logo-img" />
+          <p class="footer__tagline">Independent. Intentional. Uncompromising.</p>
+        </div>
+        <div class="footer__links">
+          <a href="#about">About</a>
+          <a href="#artists">Artists</a>
+          <a href="#releases">Releases</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; <span id="year"></span> Velora Records. All rights reserved.</p>
+        <p class="footer__email">
+          <a href="mailto:hincalgunal@gmail.com">hincalgunal@gmail.com</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

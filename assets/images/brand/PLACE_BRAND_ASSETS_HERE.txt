@@ -1,0 +1,15 @@
+Place brand assets here.
+
+Suggested files:
+  logo.svg or logo.png     — Velora Records wordmark / logo
+  favicon.ico or favicon.png — Browser tab icon (32x32 or 64x64)
+  og-image.jpg             — Open Graph / social share image (1200x630)
+
+To use a logo image:
+  1. Add your logo file here.
+  2. In index.html, replace the text-based .nav__logo content with:
+       <img src="assets/images/brand/logo.png" alt="Velora Records" height="32" />
+
+To add a favicon:
+  Add this inside <head> in index.html:
+       <link rel="icon" href="assets/images/brand/favicon.ico" />
