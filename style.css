@@ -167,6 +167,25 @@ ul { list-style: none; }
 }
 .nav__logo:hover { opacity: 0.75; }
 
+.nav__wordmark {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--white);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.nav__wordmark em {
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  opacity: 0.65;
+  margin-left: 1px;
+}
+
+/* legacy rule kept for object-fit compatibility — not used */
 .nav__logo-img {
   height: 32px;
   width: auto;
@@ -792,6 +811,30 @@ ul { list-style: none; }
   margin-bottom: 10px;
 }
 
+.footer__wordmark {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  opacity: 0.85;
+  transition: opacity 0.2s var(--ease);
+}
+
+.footer__wordmark em {
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  margin-left: 1px;
+}
+
+.footer__brand:hover .footer__wordmark {
+  opacity: 1;
+}
+
+/* legacy rule kept for future image logo — not currently rendered */
 .footer__logo-img {
   height: 28px;
   width: auto;
@@ -800,10 +843,6 @@ ul { list-style: none; }
   margin-bottom: 10px;
   opacity: 0.85;
   filter: brightness(0) invert(1);
-}
-
-.footer__brand:hover .footer__logo-img {
-  opacity: 1;
 }
 
 .footer__tagline {
