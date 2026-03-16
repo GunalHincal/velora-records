@@ -503,6 +503,23 @@ ul { list-style: none; }
   padding-top: 16px;
 }
 
+.platform-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.platform-link {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  color: var(--white-35);
+  transition: color 0.2s var(--ease);
+}
+
+.platform-link:hover { color: var(--white-60); }
+
 /* ── RELEASES ── */
 .releases { background: var(--bg-2); }
 

@@ -11,7 +11,7 @@
       "id": "malik-ray",
       "name": "MALIK RAY",
       "genre": "Hip-Hop / R&B",
-      "bio": "MALIK RAY is a boundary-pushing artist signed to Velora Records, known for his sharp lyricism and distinct sonic identity.",
+      "bio": "MALIK RAY is an artist project released and managed by Velora Records, known for sharp lyricism and a distinct sonic identity.",
       "photo": "assets/images/artists/malik-ray.jpg",
       "photoPlaceholder": false,
       "artistSpotifyUrl": "https://open.spotify.com/intl-tr/artist/6HkVZPxiFNI2qPnWR0LgMK"
@@ -30,7 +30,9 @@
       "cover": "assets/images/releases/shade-money.jpg",
       "coverPlaceholder": false,
       "albumSpotifyUrl": "https://open.spotify.com/intl-tr/album/4PlfkcNOx2YMEwMwMYvRNg",
-      "trackSpotifyUrl": "https://open.spotify.com/intl-tr/track/1dENyQWjIvS4estqHSkgc1"
+      "trackSpotifyUrl": "https://open.spotify.com/intl-tr/track/1dENyQWjIvS4estqHSkgc1",
+      "appleMusicUrl": "https://music.apple.com/us/album/shade-money-single/1884784523",
+      "youtubeMusicUrl": "https://music.youtube.com/watch?v=FxI7--IpFOw"
     }
   ]
 }
