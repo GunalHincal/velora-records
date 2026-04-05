@@ -2,7 +2,7 @@
 
 Official website for **Velora Records**, an independent music label.
 
-Live site: [velora-records.com](https://velora-records.com) <!-- update with your actual domain -->
+Live site: [https://velorarecords.vercel.app/](https://velora-records.com) `<!-- update with your actual domain -->`
 
 ---
 
@@ -98,14 +98,14 @@ Releases are grouped by artist in an accordion layout. Clicking an artist's name
 
 The site publicly displays the following for platform verification purposes (e.g. Spotify for Artists):
 
-| Field | Value |
-|---|---|
-| Label Name | Velora Records |
-| Contact | hincalgunal@gmail.com |
-| Artist | MALIK RAY |
-| Release | Shade Money |
-| UPC | 8680948182925 |
-| ISRC | TRAKF1636353 |
+| Field      | Value                 |
+| ---------- | --------------------- |
+| Label Name | Velora Records        |
+| Contact    | hincalgunal@gmail.com |
+| Artist     | MALIK RAY             |
+| Release    | Shade Money           |
+| UPC        | 8680948182925         |
+| ISRC       | TRAKF1636353          |
 
 ---
 
@@ -114,15 +114,19 @@ The site publicly displays the following for platform verification purposes (e.g
 This site uses `fetch()` to load `content.json`, so it must be served over HTTP — opening `index.html` directly will not work.
 
 **Option 1 — Node.js**
+
 ```bash
 npx http-server . -p 8080
 ```
+
 Then open `http://localhost:8080`.
 
 **Option 2 — Python**
+
 ```bash
 python -m http.server 8080
 ```
+
 Then open `http://localhost:8080`.
 
 **Option 3 — VS Code Live Server**
@@ -143,8 +147,8 @@ The site is fully static and can be deployed to any static hosting provider:
 
 ## Current Roster
 
-| Artist | Releases |
-|---|---|
+| Artist    | Releases                                         |
+| --------- | ------------------------------------------------ |
 | MALIK RAY | Shade Money, Gold Don't Sleep, Black Glass Heart |
 
 ---
