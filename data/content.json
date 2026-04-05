@@ -33,6 +33,36 @@
       "trackSpotifyUrl": "https://open.spotify.com/intl-tr/track/1dENyQWjIvS4estqHSkgc1",
       "appleMusicUrl": "https://music.apple.com/us/album/shade-money-single/1884784523",
       "youtubeMusicUrl": "https://music.youtube.com/watch?v=FxI7--IpFOw"
+    },
+    {
+      "id": "gold-dont-sleep",
+      "title": "Gold Don't Sleep",
+      "artist": "MALIK RAY",
+      "artistId": "malik-ray",
+      "type": "Single",
+      "year": "2026",
+      "upc": "8680948206058",
+      "isrc": "TRAKF1640041",
+      "cover": "assets/images/releases/gold-dont-sleep.jpg",
+      "coverPlaceholder": false,
+      "albumSpotifyUrl": "https://open.spotify.com/intl-tr/album/7CawuaJbW5Ss3OGWNZ9tEf",
+      "appleMusicUrl": "https://music.apple.com/tr/album/gold-dont-sleep-single/1890280874",
+      "youtubeMusicUrl": "https://music.youtube.com/watch?v=vfYsq-G0xm8"
+    },
+    {
+      "id": "black-glass-heart",
+      "title": "Black Glass Heart",
+      "artist": "MALIK RAY",
+      "artistId": "malik-ray",
+      "type": "Single",
+      "year": "2026",
+      "upc": "8680948206065",
+      "isrc": "TRAKF1640042",
+      "cover": "assets/images/releases/black-glass-heart.jpg",
+      "coverPlaceholder": false,
+      "albumSpotifyUrl": "https://open.spotify.com/intl-tr/album/0ZGTtSmqlSKSi0sKkG2qH0",
+      "appleMusicUrl": "https://music.apple.com/tr/album/black-glass-heart-single/1890278927",
+      "youtubeMusicUrl": "https://music.youtube.com/watch?v=Ky3tfKj-5dQ"
     }
   ]
 }

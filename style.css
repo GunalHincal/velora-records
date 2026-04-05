@@ -542,10 +542,100 @@ ul { list-style: none; }
 /* ── RELEASES ── */
 .releases { background: var(--bg-2); }
 
+/* Accordion wrapper */
+.releases__accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.releases__artist-group {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.releases__artist-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 32px;
+  background: var(--bg-card);
+  border: none;
+  border-left: 3px solid transparent;
+  cursor: pointer;
+  text-align: left;
+  color: var(--white);
+  transition: background 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+
+.releases__artist-header:hover {
+  background: var(--bg-3);
+  border-left-color: var(--border-hi);
+}
+
+.releases__artist-header.active {
+  background: var(--bg-3);
+  border-left-color: var(--gold);
+}
+
+.releases__artist-header-name {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  flex: 1;
+}
+
+.releases__artist-header-count {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white-35);
+  white-space: nowrap;
+}
+
+.releases__artist-header-chevron {
+  width: 18px;
+  height: 18px;
+  stroke: var(--white-35);
+  stroke-width: 2.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+  transition: transform 0.35s var(--ease), stroke 0.25s var(--ease);
+}
+
+.releases__artist-header.active .releases__artist-header-chevron {
+  transform: rotate(180deg);
+  stroke: var(--gold);
+}
+
+/* Panel animation via CSS grid trick */
+.releases__artist-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s var(--ease);
+}
+
+.releases__artist-panel.open {
+  grid-template-rows: 1fr;
+}
+
+.releases__artist-panel__inner {
+  overflow: hidden;
+}
+
+/* Release cards grid inside accordion panel */
 .releases__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 24px 32px 32px;
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
 }
 
 /* Release Card */
@@ -960,7 +1050,9 @@ ul { list-style: none; }
   .hero { padding: 100px 20px 60px; }
 
   .artists__grid { grid-template-columns: 1fr; }
-  .releases__grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  .releases__grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); padding: 16px 20px 24px; }
+  .releases__artist-header { padding: 18px 20px; }
+  .releases__artist-header-name { font-size: 18px; }
 
   .footer__inner { flex-direction: column; gap: 24px; }
   .footer__bottom { flex-direction: column; align-items: flex-start; gap: 8px; }

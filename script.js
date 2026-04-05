@@ -108,8 +108,13 @@ function buildReleaseCard(release) {
     ? `<a href="${release.albumSpotifyUrl}" class="release-card__cover-link" target="_blank" rel="noopener noreferrer" aria-label="Listen to ${release.title} on Spotify">${coverInner}</a>`
     : `<div>${coverInner}</div>`;
 
-  const listenLink = release.trackSpotifyUrl
+  const spotifyListenLink = release.trackSpotifyUrl
     ? `<a href="${release.trackSpotifyUrl}" class="spotify-link spotify-link--listen" target="_blank" rel="noopener noreferrer">
+        <svg class="spotify-link__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.623.623 0 01-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 01-.277-1.215c3.809-.87 7.076-.496 9.713 1.115a.623.623 0 01.206.857zm1.223-2.722a.78.78 0 01-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.78.78 0 01-.973-.519.781.781 0 01.519-.972c3.632-1.102 8.147-.568 11.234 1.328a.78.78 0 01.257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.937.937 0 11-.543-1.794c3.532-1.072 9.404-.865 13.115 1.338a.937.937 0 01-.955 1.613z"/></svg>
+        Listen on Spotify
+      </a>`
+    : release.albumSpotifyUrl
+    ? `<a href="${release.albumSpotifyUrl}" class="spotify-link spotify-link--listen" target="_blank" rel="noopener noreferrer">
         <svg class="spotify-link__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.623.623 0 01-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 01-.277-1.215c3.809-.87 7.076-.496 9.713 1.115a.623.623 0 01.206.857zm1.223-2.722a.78.78 0 01-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.78.78 0 01-.973-.519.781.781 0 01.519-.972c3.632-1.102 8.147-.568 11.234 1.328a.78.78 0 01.257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.937.937 0 11-.543-1.794c3.532-1.072 9.404-.865 13.115 1.338a.937.937 0 01-.955 1.613z"/></svg>
         Listen on Spotify
       </a>`
@@ -127,6 +132,24 @@ function buildReleaseCard(release) {
       }</div>`
     : '';
 
+  const metaHTML = (release.upc || release.isrc)
+    ? `<div class="release-card__meta">${
+        release.upc
+          ? `<div class="release-card__meta-row">
+              <span class="release-card__meta-key">UPC</span>
+              <span class="release-card__meta-val">${release.upc}</span>
+            </div>`
+          : ''
+      }${
+        release.isrc
+          ? `<div class="release-card__meta-row">
+              <span class="release-card__meta-key">ISRC</span>
+              <span class="release-card__meta-val">${release.isrc}</span>
+            </div>`
+          : ''
+      }</div>`
+    : '';
+
   const card = document.createElement('div');
   card.className = 'release-card fade-in';
   card.innerHTML = `
@@ -134,22 +157,94 @@ function buildReleaseCard(release) {
     <div class="release-card__body">
       <p class="release-card__type">${release.type} · ${release.year}</p>
       <h3 class="release-card__title">${release.title}</h3>
-      <p class="release-card__artist">${release.artist}</p>
-      <div class="release-card__meta">
-        <div class="release-card__meta-row">
-          <span class="release-card__meta-key">UPC</span>
-          <span class="release-card__meta-val">${release.upc}</span>
-        </div>
-        <div class="release-card__meta-row">
-          <span class="release-card__meta-key">ISRC</span>
-          <span class="release-card__meta-val">${release.isrc}</span>
-        </div>
-      </div>
-      ${listenLink}
+      ${metaHTML}
+      ${spotifyListenLink}
       ${extraPlatforms}
     </div>
   `;
   return card;
+}
+
+/**
+ * Build the releases accordion grouped by artist.
+ * @param {Array} releases - All releases from content.json
+ * @returns {HTMLElement}
+ */
+function buildReleasesAccordion(releases) {
+  // Group releases by artistId, preserving order of first appearance
+  const groups = [];
+  const groupMap = {};
+
+  releases.forEach(release => {
+    if (!groupMap[release.artistId]) {
+      const group = { artistId: release.artistId, artistName: release.artist, releases: [] };
+      groups.push(group);
+      groupMap[release.artistId] = group;
+    }
+    groupMap[release.artistId].releases.push(release);
+  });
+
+  const accordion = document.createElement('div');
+  accordion.className = 'releases__accordion';
+
+  groups.forEach((group, index) => {
+    const isFirst = index === 0;
+
+    const groupEl = document.createElement('div');
+    groupEl.className = 'releases__artist-group fade-in';
+
+    const releaseCount = group.releases.length;
+    const countLabel = `${releaseCount} release${releaseCount !== 1 ? 's' : ''}`;
+
+    const header = document.createElement('button');
+    header.className = 'releases__artist-header' + (isFirst ? ' active' : '');
+    header.setAttribute('aria-expanded', isFirst ? 'true' : 'false');
+    header.innerHTML = `
+      <span class="releases__artist-header-name">${group.artistName}</span>
+      <span class="releases__artist-header-count">${countLabel}</span>
+      <svg class="releases__artist-header-chevron" viewBox="0 0 24 24" aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    `;
+
+    const panel = document.createElement('div');
+    panel.className = 'releases__artist-panel' + (isFirst ? ' open' : '');
+
+    const panelInner = document.createElement('div');
+    panelInner.className = 'releases__artist-panel__inner';
+
+    const grid = document.createElement('div');
+    grid.className = 'releases__grid';
+
+    group.releases.forEach(release => {
+      grid.appendChild(buildReleaseCard(release));
+    });
+
+    panelInner.appendChild(grid);
+    panel.appendChild(panelInner);
+
+    header.addEventListener('click', () => {
+      const isOpen = panel.classList.contains('open');
+      // Close all panels
+      accordion.querySelectorAll('.releases__artist-panel').forEach(p => p.classList.remove('open'));
+      accordion.querySelectorAll('.releases__artist-header').forEach(h => {
+        h.classList.remove('active');
+        h.setAttribute('aria-expanded', 'false');
+      });
+      // Toggle the clicked one
+      if (!isOpen) {
+        panel.classList.add('open');
+        header.classList.add('active');
+        header.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    groupEl.appendChild(header);
+    groupEl.appendChild(panel);
+    accordion.appendChild(groupEl);
+  });
+
+  return accordion;
 }
 
 /* ── LOAD CONTENT ── */
@@ -173,12 +268,10 @@ fetch('data/content.json')
       });
     }
 
-    // Render releases
-    const releasesGrid = document.getElementById('releasesGrid');
-    if (releasesGrid) {
-      data.releases.forEach(release => {
-        releasesGrid.appendChild(buildReleaseCard(release));
-      });
+    // Render releases as accordion grouped by artist
+    const releasesContainer = document.getElementById('releasesContainer');
+    if (releasesContainer) {
+      releasesContainer.appendChild(buildReleasesAccordion(data.releases));
     }
 
     // Start observing newly added cards
