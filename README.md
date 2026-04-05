@@ -2,7 +2,7 @@
 
 Official website for **Velora Records**, an independent music label.
 
-Live site: [https://velorarecords.vercel.app/](https://velora-records.com) `<!-- update with your actual domain -->`
+Live site: [https://velorarecords.vercel.app/]([https://velorarecords.vercel.app/](https://velora-records.com))  `<!-- update with your actual domain -->`
 
 ---
 
