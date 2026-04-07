@@ -149,7 +149,7 @@ The site is fully static and can be deployed to any static hosting provider:
 
 | Artist    | Releases                                         |
 | --------- | ------------------------------------------------ |
-| MALIK RAY | Shade Money, Gold Don't Sleep, Black Glass Heart |
+| MALIK RAY | Velvet Hours *(Album — April 30, 2026)*, Shade Money, Gold Don't Sleep, Black Glass Heart |
 
 ---
 

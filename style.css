@@ -628,14 +628,62 @@ ul { list-style: none; }
   overflow: hidden;
 }
 
+/* Panel content wrapper */
+.releases__panel-content {
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+}
+
+/* Type sub-group label (Albums / EPs / Singles) */
+.releases__type-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--white-35);
+  padding: 24px 32px 0;
+}
+
 /* Release cards grid inside accordion panel */
 .releases__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
-  padding: 24px 32px 32px;
-  background: var(--bg-2);
-  border-top: 1px solid var(--border);
+  padding: 16px 32px 32px;
+}
+
+/* ── COMING SOON CARD ── */
+.release-card--coming-soon {
+  border-color: rgba(200,169,110,0.2);
+}
+
+.release-card--coming-soon:hover {
+  border-color: rgba(200,169,110,0.45);
+  box-shadow: 0 20px 60px rgba(200,169,110,0.08);
+}
+
+.release-card__soon-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  background: rgba(200,169,110,0.92);
+  color: #000;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: var(--radius);
+  backdrop-filter: blur(4px);
+}
+
+.release-card__release-date {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.04em;
 }
 
 /* Release Card */

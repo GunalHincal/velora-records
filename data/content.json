@@ -19,6 +19,18 @@
   ],
   "releases": [
     {
+      "id": "velvet-hours",
+      "title": "Velvet Hours",
+      "artist": "MALIK RAY",
+      "artistId": "malik-ray",
+      "type": "Album",
+      "year": "2026",
+      "releaseDate": "2026-04-30",
+      "comingSoon": true,
+      "cover": "assets/images/releases/velvet-hours.jpg",
+      "coverPlaceholder": false
+    },
+    {
       "id": "shade-money",
       "title": "Shade Money",
       "artist": "MALIK RAY",

@@ -92,10 +92,44 @@ function buildArtistCard(artist) {
 
 /**
  * Build a release card element.
+ * Handles both regular releases and coming-soon releases.
  * @param {Object} release - Release data from content.json
  * @returns {HTMLElement}
  */
 function buildReleaseCard(release) {
+  // ── COMING SOON CARD ──
+  if (release.comingSoon) {
+    const releaseDate = release.releaseDate
+      ? new Date(release.releaseDate + 'T00:00:00').toLocaleDateString('en-US', {
+          month: 'long', day: 'numeric', year: 'numeric'
+        })
+      : null;
+
+    const coverImg = release.coverPlaceholder
+      ? `<div class="release-card__placeholder">
+          <span class="release-card__placeholder-title">${release.title}</span>
+          <span class="release-card__placeholder-artist">${release.artist}</span>
+        </div>`
+      : `<img src="${release.cover}" alt="${release.title} cover art" loading="lazy" />`;
+
+    const card = document.createElement('div');
+    card.className = 'release-card release-card--coming-soon fade-in';
+    card.innerHTML = `
+      <div class="release-card__cover">
+        ${coverImg}
+        <div class="release-card__soon-badge">Coming Soon</div>
+      </div>
+      <div class="release-card__body">
+        <p class="release-card__type">${release.type} · ${release.year}</p>
+        <h3 class="release-card__title">${release.title}</h3>
+        <p class="release-card__artist">${release.artist}</p>
+        ${releaseDate ? `<p class="release-card__release-date">Releasing ${releaseDate}</p>` : ''}
+      </div>
+    `;
+    return card;
+  }
+
+  // ── REGULAR CARD ──
   const coverInner = release.coverPlaceholder
     ? `<div class="release-card__placeholder">
         <span class="release-card__placeholder-title">${release.title}</span>
@@ -103,18 +137,12 @@ function buildReleaseCard(release) {
       </div>`
     : `<img src="${release.cover}" alt="${release.title} cover art" loading="lazy" />`;
 
-  // Wrap cover in a link if an album URL exists
   const coverHTML = release.albumSpotifyUrl
     ? `<a href="${release.albumSpotifyUrl}" class="release-card__cover-link" target="_blank" rel="noopener noreferrer" aria-label="Listen to ${release.title} on Spotify">${coverInner}</a>`
     : `<div>${coverInner}</div>`;
 
-  const spotifyListenLink = release.trackSpotifyUrl
-    ? `<a href="${release.trackSpotifyUrl}" class="spotify-link spotify-link--listen" target="_blank" rel="noopener noreferrer">
-        <svg class="spotify-link__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.623.623 0 01-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 01-.277-1.215c3.809-.87 7.076-.496 9.713 1.115a.623.623 0 01.206.857zm1.223-2.722a.78.78 0 01-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.78.78 0 01-.973-.519.781.781 0 01.519-.972c3.632-1.102 8.147-.568 11.234 1.328a.78.78 0 01.257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.937.937 0 11-.543-1.794c3.532-1.072 9.404-.865 13.115 1.338a.937.937 0 01-.955 1.613z"/></svg>
-        Listen on Spotify
-      </a>`
-    : release.albumSpotifyUrl
-    ? `<a href="${release.albumSpotifyUrl}" class="spotify-link spotify-link--listen" target="_blank" rel="noopener noreferrer">
+  const spotifyListenLink = (release.trackSpotifyUrl || release.albumSpotifyUrl)
+    ? `<a href="${release.trackSpotifyUrl || release.albumSpotifyUrl}" class="spotify-link spotify-link--listen" target="_blank" rel="noopener noreferrer">
         <svg class="spotify-link__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.623.623 0 01-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 01-.277-1.215c3.809-.87 7.076-.496 9.713 1.115a.623.623 0 01.206.857zm1.223-2.722a.78.78 0 01-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.78.78 0 01-.973-.519.781.781 0 01.519-.972c3.632-1.102 8.147-.568 11.234 1.328a.78.78 0 01.257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.937.937 0 11-.543-1.794c3.532-1.072 9.404-.865 13.115 1.338a.937.937 0 01-.955 1.613z"/></svg>
         Listen on Spotify
       </a>`
@@ -166,12 +194,13 @@ function buildReleaseCard(release) {
 }
 
 /**
- * Build the releases accordion grouped by artist.
+ * Build the releases accordion grouped by artist, sub-grouped by type.
+ * Type order: Album → EP → Single
  * @param {Array} releases - All releases from content.json
  * @returns {HTMLElement}
  */
 function buildReleasesAccordion(releases) {
-  // Group releases by artistId, preserving order of first appearance
+  // Group by artistId, preserving order of first appearance
   const groups = [];
   const groupMap = {};
 
@@ -187,6 +216,9 @@ function buildReleasesAccordion(releases) {
   const accordion = document.createElement('div');
   accordion.className = 'releases__accordion';
 
+  const TYPE_ORDER = ['Album', 'EP', 'Single'];
+  const TYPE_LABELS = { Album: 'Albums', EP: 'EPs', Single: 'Singles' };
+
   groups.forEach((group, index) => {
     const isFirst = index === 0;
 
@@ -194,14 +226,12 @@ function buildReleasesAccordion(releases) {
     groupEl.className = 'releases__artist-group fade-in';
 
     const releaseCount = group.releases.length;
-    const countLabel = `${releaseCount} release${releaseCount !== 1 ? 's' : ''}`;
-
     const header = document.createElement('button');
     header.className = 'releases__artist-header' + (isFirst ? ' active' : '');
     header.setAttribute('aria-expanded', isFirst ? 'true' : 'false');
     header.innerHTML = `
       <span class="releases__artist-header-name">${group.artistName}</span>
-      <span class="releases__artist-header-count">${countLabel}</span>
+      <span class="releases__artist-header-count">${releaseCount} release${releaseCount !== 1 ? 's' : ''}</span>
       <svg class="releases__artist-header-chevron" viewBox="0 0 24 24" aria-hidden="true">
         <polyline points="6 9 12 15 18 9"/>
       </svg>
@@ -213,25 +243,44 @@ function buildReleasesAccordion(releases) {
     const panelInner = document.createElement('div');
     panelInner.className = 'releases__artist-panel__inner';
 
-    const grid = document.createElement('div');
-    grid.className = 'releases__grid';
+    const panelContent = document.createElement('div');
+    panelContent.className = 'releases__panel-content';
 
-    group.releases.forEach(release => {
-      grid.appendChild(buildReleaseCard(release));
+    // Sub-group by type
+    const subGroups = {};
+    group.releases.forEach(r => {
+      const t = r.type || 'Single';
+      if (!subGroups[t]) subGroups[t] = [];
+      subGroups[t].push(r);
     });
 
-    panelInner.appendChild(grid);
+    const typesPresent = TYPE_ORDER.filter(t => subGroups[t] && subGroups[t].length > 0);
+    const hasMultipleTypes = typesPresent.length > 1;
+
+    typesPresent.forEach(type => {
+      if (hasMultipleTypes) {
+        const typeLabel = document.createElement('p');
+        typeLabel.className = 'releases__type-label';
+        typeLabel.textContent = TYPE_LABELS[type] || type + 's';
+        panelContent.appendChild(typeLabel);
+      }
+
+      const grid = document.createElement('div');
+      grid.className = 'releases__grid';
+      subGroups[type].forEach(release => grid.appendChild(buildReleaseCard(release)));
+      panelContent.appendChild(grid);
+    });
+
+    panelInner.appendChild(panelContent);
     panel.appendChild(panelInner);
 
     header.addEventListener('click', () => {
       const isOpen = panel.classList.contains('open');
-      // Close all panels
       accordion.querySelectorAll('.releases__artist-panel').forEach(p => p.classList.remove('open'));
       accordion.querySelectorAll('.releases__artist-header').forEach(h => {
         h.classList.remove('active');
         h.setAttribute('aria-expanded', 'false');
       });
-      // Toggle the clicked one
       if (!isOpen) {
         panel.classList.add('open');
         header.classList.add('active');
